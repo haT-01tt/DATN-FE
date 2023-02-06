@@ -10,7 +10,10 @@ export default function Profile() {
             Họ và tên : <span>{user.full_name}</span>
           </p>
           <p className='font-weight-bold'>
-            Giới tính : <span>{user.gender == 0 ? 'Nam' : 'Nữ'}</span>
+            Giới tính :{' '}
+            <span>
+              {user.gender == 0 ? 'Nam' : user.gender == 1 ? 'Nữ' : ''}
+            </span>
           </p>
           <p className='font-weight-bold'>
             Email : <span>{user.email}</span>
