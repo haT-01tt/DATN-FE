@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import { Switch, Route } from "react-router-dom";
-import Home from "../components/Home";
-import ProductDetail from "../components/ProductDetail";
-import Cart from "../components/Cart";
-import Checkout from "../components/Checkout";
-import Order from "../components/Order";
-import OrderDetail from "../components/OrderDetail";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-import Register from "../authenticate/Register";
-import SignIn from "../authenticate/SignIn";
+import React, { useEffect, useState } from 'react';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+import { Switch, Route } from 'react-router-dom';
+import Home from '../components/Home';
+import ProductDetail from '../components/ProductDetail';
+import Cart from '../components/Cart';
+import Checkout from '../components/Checkout';
+import Order from '../components/Order';
+import OrderDetail from '../components/OrderDetail';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Register from '../authenticate/Register';
+import SignIn from '../authenticate/SignIn';
+import Profile from '../components/Profile';
 
 const UserLayOut = () => {
   const [temp, setTemp] = useState(true);
@@ -23,7 +24,7 @@ const UserLayOut = () => {
   useEffect(() => {
     setCartItem([]);
     setBuy([]);
-    setUser(localStorage.getItem("user"));
+    setUser(localStorage.getItem('user'));
   }, [temp]);
 
   const refresh = (data) => {
@@ -70,7 +71,7 @@ const UserLayOut = () => {
   };
 
   const clearHandler = () => {
-    const res = cartItem.filter((item) => !buy.includes(item.id + ""));
+    const res = cartItem.filter((item) => !buy.includes(item.id + ''));
     setCartItem(res);
   };
 
@@ -79,7 +80,7 @@ const UserLayOut = () => {
   };
 
   return (
-    <div className="col-10 offset-1">
+    <div className='col-10 offset-1'>
       <Header
         header={header}
         user={user}
@@ -87,7 +88,7 @@ const UserLayOut = () => {
         refresh={refresh}
       ></Header>
       <Switch>
-        <Route path="/" exact>
+        <Route path='/' exact>
           <Home changeHeaderHandler={changeHeaderHandler} user={user}></Home>
         </Route>
         <Route path={`/product-detail/:id`} exact>
@@ -97,7 +98,7 @@ const UserLayOut = () => {
             addHandler={addHandler}
           ></ProductDetail>
         </Route>
-        <Route path="/cart" exact>
+        <Route path='/cart' exact>
           <Cart
             buyHandler={buyHandler}
             cancelBuyHandler={cancelBuyHandler}
@@ -109,7 +110,7 @@ const UserLayOut = () => {
             cartHandler={cartHandler}
           ></Cart>
         </Route>
-        <Route path="/checkout" exact>
+        <Route path='/checkout' exact>
           <Checkout
             temp={temp}
             buy={buy}
@@ -120,19 +121,22 @@ const UserLayOut = () => {
             setCartItemHandler={setCartItemHandler}
           ></Checkout>
         </Route>
-        <Route path="/order" exact>
+        <Route path='/profile' exact>
+          <Profile></Profile>
+        </Route>
+        <Route path='/order' exact>
           <Order changeHeaderHandler={changeHeaderHandler} user={user}></Order>
         </Route>
-        <Route path="/order/detail/:id" exact>
+        <Route path='/order/detail/:id' exact>
           <OrderDetail
             changeHeaderHandler={changeHeaderHandler}
             user={user}
           ></OrderDetail>
         </Route>
-        <Route path="/register" exact>
+        <Route path='/register' exact>
           <Register></Register>
         </Route>
-        <Route path="/sign-in" exact>
+        <Route path='/sign-in' exact>
           <SignIn userHandler={userHandler}></SignIn>
         </Route>
       </Switch>
